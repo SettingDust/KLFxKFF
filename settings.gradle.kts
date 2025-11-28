@@ -12,10 +12,6 @@ dependencyResolutionManagement {
     }
 }
 
-dependencyResolutionManagement.versionCatalogs.create("catalog") {
-    library("preloadingTricks", "maven.modrinth", "preloading-tricks").version("2.6.1")
-}
-
 plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
