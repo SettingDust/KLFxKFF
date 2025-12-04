@@ -102,7 +102,7 @@ cloche {
             implementation("net.lenni0451:Reflect:1.6.0-SNAPSHOT")
 
             modImplementation("dev.nyon:KotlinLangForge:2.10.6-k2.2.21-2.0+forge")
-            modImplementation("thedarkcolour:kotlinforforge:4.11.0")
+            modImplementation("thedarkcolour:kotlinforforge:6.0.0")
         }
 
         tasks {
