@@ -61,8 +61,8 @@ jobs:
           game-version-filter: releases
 
           dependencies: |
-            kotlin-lang-forge
-            kotlin-for-forge{curseforge:351264}
+            kotlin-lang-forge{curseforge:351264}
+            kotlin-for-forge
 
           java: |
             17
