@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import settingdust.klf_x_kff.accessor.JarAccessor;
 import settingdust.klf_x_kff.accessor.SimpleJarMetadataAccessor;
 import settingdust.preloading_tricks.api.PreloadingTricksCallbacks;
-import settingdust.preloading_tricks.lexforge.LexForgeModManager;
+import settingdust.preloading_tricks.forge.modlauncher.LexForgeModManager;
 
 import java.util.List;
 import java.util.Set;

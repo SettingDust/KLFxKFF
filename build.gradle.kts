@@ -10,7 +10,7 @@ import net.msrandom.minecraftcodev.core.utils.lowerCamelCaseGradleName
 plugins {
     id("com.palantir.git-version") version "4.1.0"
 
-    id("earth.terrarium.cloche") version "0.16.21-dust"
+    id("earth.terrarium.cloche") version "0.18.11-dust.20"
 }
 
 val archive_name: String by rootProject.properties
@@ -50,6 +50,10 @@ repositories {
         content {
             includeGroupAndSubgroups("net.lenni0451")
         }
+    }
+
+    maven("https://raw.githubusercontent.com/settingdust/maven/main/repository/") {
+        name = "SettingDust's Maven"
     }
 
     mavenCentral()
@@ -98,7 +102,7 @@ cloche {
         loaderVersion = "47.4.4"
 
         dependencies {
-            implementation("maven.modrinth:preloading-tricks:3.3.1")
+            implementation("settingdust.preloading_tricks:PreloadingTricks:3.6.0")
             implementation("net.lenni0451:Reflect:1.6.0-SNAPSHOT")
 
             modImplementation("dev.nyon:KotlinLangForge:2.10.6-k2.2.21-2.0+forge")
