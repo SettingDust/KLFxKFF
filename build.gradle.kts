@@ -56,7 +56,13 @@ repositories {
         name = "SettingDust's Maven"
     }
 
+    maven("https://repo.essential.gg/repository/maven-public/") {
+        content { includeGroup("gg.essential") }
+    }
+
     mavenCentral()
+
+    mavenLocal()
 
     cloche {
         librariesMinecraft()
@@ -102,7 +108,7 @@ cloche {
         loaderVersion = "47.4.4"
 
         dependencies {
-            implementation("settingdust.preloading_tricks:PreloadingTricks:3.6.0")
+            implementation("settingdust.preloading_tricks:PreloadingTricks:3.6.0-5-ga5d4077.dirty")
             implementation("net.lenni0451:Reflect:1.6.0-SNAPSHOT")
 
             modImplementation("dev.nyon:KotlinLangForge:2.10.6-k2.2.21-2.0+forge")
@@ -127,11 +133,13 @@ cloche {
         }
 
         dependencies {
-            implementation(project(":")) {
+            runtimeOnly(project(":")) {
                 capabilities {
                     requireFeature(forge.capabilitySuffix!!)
                 }
             }
+
+//            implementation("gg.essential:loader-modlauncher9:1.3.2")
         }
 
         tasks {

@@ -13,6 +13,8 @@ import settingdust.klf_x_kff.accessor.SimpleJarMetadataAccessor;
 import settingdust.preloading_tricks.api.PreloadingTricksCallbacks;
 import settingdust.preloading_tricks.forge.modlauncher.LexForgeModManager;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -37,19 +39,24 @@ public class KLFxKFFTransformationService implements ITransformationService {
             for (var modFile : manager.all()) {
                 if (modFile == klfFile) continue;
                 var jar = (Jar) modFile.getSecureJar();
-                var metadata = (SimpleJarMetadata) JarAccessor.getMetadata(jar);
-                SimpleJarMetadataAccessor.setPkgs(
-                        metadata, jar.getPackages().stream()
-                                .filter(it -> !klfPackages.contains(it))
-                                .collect(Collectors.toSet())
-                );
-                SimpleJarMetadataAccessor.setProviders(
-                        metadata,
-                        metadata.providers()
-                                .stream()
-                                .filter(it -> !klfProvides.contains(it.serviceName()))
-                                .toList()
-                );
+                if (!(JarAccessor.getMetadata(jar) instanceof SimpleJarMetadata metadata)) continue;
+                var packages = new HashSet<>(jar.getPackages());
+                var providers = new ArrayList<>(metadata.providers());
+                var needRemove = false;
+                for (var packageName : jar.getPackages()) {
+                    if (klfPackages.contains(packageName)) {
+                        packages.remove(packageName);
+                        needRemove = true;
+                    }
+                }
+                if (!needRemove) continue;
+                providers.removeIf(provider -> klfProvides.contains(provider.serviceName()));
+                if (packages.size() != jar.getPackages().size()) {
+                    SimpleJarMetadataAccessor.setPkgs(metadata, Set.copyOf(packages));
+                }
+                if (providers.size() != metadata.providers().size()) {
+                    SimpleJarMetadataAccessor.setProviders(metadata, List.copyOf(providers));
+                }
             }
         });
     }
