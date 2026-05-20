@@ -108,7 +108,7 @@ cloche {
         loaderVersion = "47.4.4"
 
         dependencies {
-            implementation("settingdust.preloading_tricks:PreloadingTricks:3.6.0-5-ga5d4077.dirty")
+            implementation("settingdust.preloading_tricks:PreloadingTricks:3.6.1")
             implementation("net.lenni0451:Reflect:1.6.0-SNAPSHOT")
 
             modImplementation("dev.nyon:KotlinLangForge:2.10.6-k2.2.21-2.0+forge")
